@@ -54,9 +54,9 @@ pub fn extract_scenes(
         query_scenes.iter()
     {
         // Skip if visibility conditions are not met
-        if !view_visibility.get() || !inherited_visibility.get() {
-            continue;
-        }
+        // if !view_visibility.get() || !inherited_visibility.get() {
+        //     continue;
+        // }
 
         // Check if any camera renders this asset
         let asset_render_layers = render_layers.unwrap_or_default();

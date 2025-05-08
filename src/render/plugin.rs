@@ -94,10 +94,6 @@ impl Plugin for VelloRenderPlugin {
             .add_systems(
                 Update,
                 (systems::resize_rendertargets, systems::hide_when_empty),
-            )
-            .add_systems(
-                PostUpdate,
-                check_visibility::<With<VelloScene>>.in_set(VisibilitySystems::CheckVisibility),
             );
     }
 

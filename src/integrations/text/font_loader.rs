@@ -1,9 +1,6 @@
 use super::{context::get_global_font_context, font::VelloFont};
 use crate::{integrations::VectorLoaderError, integrations::text::context::LOCAL_FONT_CONTEXT};
-use bevy::{
-    asset::{AssetLoader, LoadContext, io::Reader},
-    log::warn,
-};
+use bevy::asset::{AssetLoader, LoadContext, io::Reader};
 
 #[derive(Default)]
 pub struct VelloFontLoader;
@@ -16,9 +13,9 @@ pub(crate) fn load_into_font_context(bytes: Vec<u8>) -> VelloFont {
         let font_context = font_context.as_mut().unwrap();
         let registered_fonts = font_context.collection.register_fonts(bytes.clone());
         let maybe_font = registered_fonts.first();
-        if maybe_font.is_none() {
-            warn!("Failed to register default font");
-        }
+        // if maybe_font.is_none() {
+        //     warn!("Failed to register default font");
+        // }
         let (family_id, _font_info_vec) = maybe_font.unwrap();
         let family_name = font_context.collection.family_name(*family_id).unwrap();
         VelloFont {

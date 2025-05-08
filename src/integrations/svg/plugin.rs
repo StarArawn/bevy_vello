@@ -17,11 +17,11 @@ impl Plugin for SvgIntegrationPlugin {
         app.init_asset_loader::<VelloSvgLoader>()
             .init_asset::<VelloSvg>()
             .register_type::<VelloSvgHandle>()
-            .register_type::<VelloSvgAnchor>()
-            .add_systems(
-                PostUpdate,
-                check_visibility::<With<VelloSvgHandle>>.in_set(VisibilitySystems::CheckVisibility),
-            );
+            .register_type::<VelloSvgAnchor>();
+        // .add_systems(
+        //     PostUpdate,
+        //     check_visibility::<With<VelloSvgHandle>>.in_set(VisibilitySystems::CheckVisibility),
+        // );
 
         let Some(render_app) = app.get_sub_app_mut(RenderApp) else {
             return;

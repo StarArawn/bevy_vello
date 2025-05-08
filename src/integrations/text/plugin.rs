@@ -16,12 +16,12 @@ impl Plugin for VelloTextIntegrationPlugin {
     fn build(&self, app: &mut App) {
         app.init_asset::<VelloFont>()
             .init_asset_loader::<VelloFontLoader>()
-            .add_plugins(RenderAssetPlugin::<VelloFont>::default())
-            .add_systems(
-                PostUpdate,
-                check_visibility::<With<VelloTextSection>>
-                    .in_set(VisibilitySystems::CheckVisibility),
-            );
+            .add_plugins(RenderAssetPlugin::<VelloFont>::default());
+        // .add_systems(
+        //     PostUpdate,
+        //     check_visibility::<With<VelloTextSection>>
+        //         .in_set(VisibilitySystems::CheckVisibility),
+        // );
         #[cfg(feature = "default_font")]
         {
             let mut fonts = app

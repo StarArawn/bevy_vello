@@ -3,7 +3,7 @@ use crate::integrations::{VectorLoaderError, svg::load_svg_from_bytes};
 use bevy::{
     asset::{AssetLoader, LoadContext, io::Reader},
     prelude::*,
-    utils::ConditionalSendFuture,
+    tasks::ConditionalSendFuture,
 };
 
 #[derive(Default)]
@@ -34,15 +34,15 @@ impl AssetLoader for VelloSvgLoader {
                         "Invalid file extension",
                     )))?;
 
-            debug!("parsing {}...", load_context.path().display());
+            // debug!("parsing {}...", load_context.path().display());
             match ext {
                 "svg" => {
                     let asset = load_svg_from_bytes(&bytes)?;
-                    info!(
-                        path = format!("{}", load_context.path().display()),
-                        size = format!("{:?}", (asset.width, asset.height)),
-                        "finished parsing svg asset"
-                    );
+                    // info!(
+                    //     path = format!("{}", load_context.path().display()),
+                    //     size = format!("{:?}", (asset.width, asset.height)),
+                    //     "finished parsing svg asset"
+                    // );
                     Ok(asset)
                 }
                 ext => Err(VectorLoaderError::Io(std::io::Error::new(
